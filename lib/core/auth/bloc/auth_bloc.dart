@@ -1,13 +1,13 @@
 import 'dart:async';
 
-import 'package:artemis_mobile/core/enums/enum_auth_status.dart';
-import 'package:artemis_mobile/models/authentication/authentication.dart';
-import 'package:artemis_mobile/providers/repositories/auth_repository.dart';
-
-import '../../../models/person/person.dart';
-import '../../../providers/repositories/person_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+
+import '../../../models/authentication/authentication.dart';
+import '../../../models/person/person.dart';
+import '../../../providers/repositories/auth_repository.dart';
+import '../../../providers/repositories/person_repository.dart';
+import '../../enums/enum_auth_status.dart';
 
 part 'auth_event.dart';
 part 'auth_state.dart';

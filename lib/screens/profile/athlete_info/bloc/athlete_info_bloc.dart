@@ -1,6 +1,5 @@
-import 'package:artemis_mobile/models/athlete/athlete.dart';
-import 'package:artemis_mobile/providers/repositories/athlete_repository.dart';
-import 'package:artemis_mobile/providers/repositories/impl/athlete_repository_impl.dart';
+import '../../../../models/athlete/athlete.dart';
+import '../../../../providers/repositories/athlete_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 

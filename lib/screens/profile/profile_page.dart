@@ -1,5 +1,5 @@
-import 'package:artemis_mobile/screens/graduation/detail/graduation_detail.dart';
-import 'package:artemis_mobile/screens/profile/athlete_info/profile_athlete_info.dart';
+import 'athlete_info/profile_athlete_info.dart';
+import 'widgets/info_text_widget.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';

@@ -26,5 +26,6 @@ linter:
     prefer_single_quotes: true 
     avoid_positional_boolean_parameters: true
     parameter_assignments: true
+    lines_longer_than_80_chars: false
 # Additional information about this file can be found at
 # https://dart.dev/guides/language/analysis-options

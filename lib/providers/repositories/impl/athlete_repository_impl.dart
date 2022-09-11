@@ -1,15 +1,15 @@
 import 'dart:convert';
 
-import 'package:artemis_mobile/core/enums/enum_graduation_situation.dart';
-import 'package:artemis_mobile/core/enums/enum_sort.dart';
-import 'package:artemis_mobile/models/athlete/athlete.dart';
-import 'package:artemis_mobile/models/graduation/athlete/athlete_graduation.dart';
-import 'package:artemis_mobile/models/graduation/graduation.dart';
-import 'package:artemis_mobile/models/graduation/history/graduation_history.dart';
-import 'package:artemis_mobile/models/pageable/pageable_input.dart';
-import 'package:artemis_mobile/models/pageable/sort_fields_input.dart';
-import 'package:artemis_mobile/providers/dio_client.dart';
-import 'package:artemis_mobile/providers/repositories/athlete_repository.dart';
+import '../../../core/enums/enum_graduation_situation.dart';
+import '../../../core/enums/enum_sort.dart';
+import '../../../models/athlete/athlete.dart';
+import '../../../models/graduation/athlete/athlete_graduation.dart';
+import '../../../models/graduation/graduation.dart';
+import '../../../models/graduation/history/graduation_history.dart';
+import '../../../models/pageable/pageable_input.dart';
+import '../../../models/pageable/sort_fields_input.dart';
+import '../../dio_client.dart';
+import '../athlete_repository.dart';
 import 'package:dio/dio.dart';
 
 class AthleteRepository implements IAthleteRepository {
@@ -54,12 +54,33 @@ class AthleteRepository implements IAthleteRepository {
           page: 0,
           size: 99,
           sortFields: [
-            SortField(property: 'graduation.date', direction: EnumSort.asc),
+            SortField(property: 'graduation.date', direction: EnumSort.desc),
           ],
         ).toMap),
       },
     );
 
     return (response.data['records'] as List).map((e) => AthleteGraduation.fromMap(e)).toList();
+  }
+
+  @override
+  Future<AthleteGraduation> getAthleteGraduation({required int athleteCode, required int graduationCode}) async {
+    final Response response = await _dio.get(
+      'athlete/listGraduations',
+      queryParameters: {
+        'athleteCode': athleteCode,
+        'pageable': json.encode(const PageableInput(
+          page: 0,
+          size: 99,
+          sortFields: [
+            SortField(property: 'graduation.date', direction: EnumSort.desc),
+          ],
+        ).toMap),
+      },
+    );
+
+    final List<AthleteGraduation> list = (response.data['records'] as List).map((e) => AthleteGraduation.fromMap(e)).toList();
+
+    return list.firstWhere((element) => element.graduation?.code == graduationCode);
   }
 }

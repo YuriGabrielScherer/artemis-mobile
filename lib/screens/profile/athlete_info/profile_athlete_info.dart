@@ -1,11 +1,9 @@
-import 'package:artemis_mobile/core/enums/enum_belt.dart';
-import 'package:artemis_mobile/core/getit.dart';
-import 'package:artemis_mobile/models/athlete/athlete.dart';
-import 'package:artemis_mobile/models/person/person.dart';
-import 'package:artemis_mobile/providers/repositories/impl/athlete_repository_impl.dart';
-import 'package:artemis_mobile/screens/profile/athlete_graduation_history/athlete_graduation_history.dart'
-    show AthleteGraduationHistory;
-import 'package:artemis_mobile/screens/profile/athlete_info/bloc/athlete_info_bloc.dart';
+import '../../../core/enums/enum_belt.dart';
+import '../../../core/getit.dart';
+import '../../../models/athlete/athlete.dart';
+import '../../../models/person/person.dart';
+import '../../../providers/repositories/impl/athlete_repository_impl.dart';
+import 'bloc/athlete_info_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
@@ -56,29 +54,6 @@ class ProfileAthleteInfo extends StatelessWidget {
                 ],
               ),
               InfoTextWidget(title: 'Atleta desde', data: DateFormat('dd/MM/yyyy').format(athlete.since)),
-              Material(
-                borderRadius: BorderRadius.circular(4),
-                child: InkWell(
-                  onTap: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (_) => AthleteGraduationHistory(person: person),
-                      ),
-                    );
-                  },
-                  borderRadius: BorderRadius.circular(4),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 4.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text('Exames de Graduação', style: Theme.of(context).textTheme.caption),
-                        const Icon(Icons.chevron_right_rounded),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
             ],
           );
         },

@@ -1,5 +1,6 @@
-import '../core/enums/enum_athlete_graduation_situation.dart';
 import 'package:flutter/material.dart';
+
+import '../core/enums/enum_athlete_graduation_situation.dart';
 
 class AthleteGraduationSituationBadge extends StatelessWidget {
   const AthleteGraduationSituationBadge({required this.situation, Key? key}) : super(key: key);

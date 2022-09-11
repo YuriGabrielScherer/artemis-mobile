@@ -1,5 +1,5 @@
-import '../../../../core/enums/enum_graduation_situation.dart';
-import '../../../../models/graduation/history/graduation_history.dart';
+import 'package:artemis_mobile/core/enums/enum_graduation_situation.dart';
+import 'package:artemis_mobile/models/graduation/history/graduation_history.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:timelines/timelines.dart';
@@ -8,7 +8,7 @@ class GraduationDetailTimeline extends StatelessWidget {
   const GraduationDetailTimeline({required this.history, Key? key}) : super(key: key);
   final List<GraduationHistory> history;
 
-  Color getColor(EnumGraduationSituation situation, bool isCanceled, GraduationHistory? history) {
+  Color getColor({required EnumGraduationSituation situation, required bool isCanceled, GraduationHistory? history}) {
     if (isCanceled == true) {
       if (situation == EnumGraduationSituation.canceled) {
         return Colors.red;
@@ -51,14 +51,14 @@ class GraduationDetailTimeline extends StatelessWidget {
           node: TimelineNode(
             indicator: _CustomDotIndicator(
               icon: situation.icon,
-              backgroundColor: getColor(situation, isCanceled, currentHistory),
+              backgroundColor: getColor(situation: situation, isCanceled: isCanceled, history: currentHistory),
               iconColor: Colors.white,
             ),
             startConnector: SolidLineConnector(
-              color: getColor(situation, isCanceled, currentHistory),
+              color: getColor(situation: situation, isCanceled: isCanceled, history: currentHistory),
             ),
             endConnector: SolidLineConnector(
-              color: getColor(situation, isCanceled, currentHistory),
+              color: getColor(situation: situation, isCanceled: isCanceled, history: currentHistory),
             ),
           ),
         );

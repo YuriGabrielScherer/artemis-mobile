@@ -1,4 +1,4 @@
-import 'package:artemis_mobile/providers/repositories/auth_repository.dart';
+import '../../../providers/repositories/auth_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 

@@ -7,4 +7,10 @@ abstract class GraduationListEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class GraduationListRequest extends GraduationListEvent {}
+class GraduationListRequest extends GraduationListEvent {
+  final int athleteCode;
+  const GraduationListRequest({required this.athleteCode});
+
+  @override
+  List<Object> get props => [athleteCode];
+}

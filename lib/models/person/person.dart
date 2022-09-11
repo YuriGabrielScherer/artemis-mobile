@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:artemis_mobile/core/enums/enum_gender.dart';
-import 'package:artemis_mobile/models/athlete/athlete.dart';
+import '../../core/enums/enum_gender.dart';
+import '../athlete/athlete.dart';
 import 'package:equatable/equatable.dart';
 
 import '../association/association.dart';

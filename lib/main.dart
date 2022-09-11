@@ -1,14 +1,16 @@
-import 'package:artemis_mobile/core/getit.dart';
+import 'package:artemis_mobile/core/bloc_observer.dart';
+import 'package:bloc/bloc.dart';
+
+import 'core/getit.dart';
 
 import 'package:flutter/material.dart';
-// import 'package:intl/intl.dart';
-// import 'package:intl/date_symbol_data_local.dart';
 
 import 'package:artemis_mobile/screens/app/app.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   setupGetIt();
-  // Intl.defaultLocale = 'pt_BR';
-  // initializeDateFormatting('de_DE', null).then(formatDates);
+  Bloc.observer = MyBlocObserver();
+
   runApp(const App());
 }

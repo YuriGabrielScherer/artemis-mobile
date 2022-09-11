@@ -1,7 +1,7 @@
 import 'dart:math';
 
-import 'package:artemis_mobile/models/graduation/graduation.dart';
-import 'package:artemis_mobile/providers/repositories/athlete_repository.dart';
+import '../../../../models/graduation/graduation.dart';
+import '../../../../providers/repositories/athlete_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 

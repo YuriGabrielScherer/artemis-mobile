@@ -1,6 +1,7 @@
-import 'package:artemis_mobile/core/enums/enum_sort.dart';
-import 'package:artemis_mobile/models/pageable/pageable_input.dart';
-import 'package:artemis_mobile/models/pageable/sort_fields_input.dart';
+import '../../../../core/enums/enum_sort.dart';
+import '../../../../models/graduation/dto/graduatin_list_input.dart';
+import '../../../../models/pageable/pageable_input.dart';
+import '../../../../models/pageable/sort_fields_input.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:stream_transform/stream_transform.dart';
@@ -25,21 +26,23 @@ class GraduationListBloc extends Bloc<GraduationListEvent, GraduationListState> 
 
   final IGraduationRepository repository;
 
-  void _onGraduationListRequest(GraduationListEvent event, Emitter<GraduationListState> emit) async {
+  void _onGraduationListRequest(GraduationListRequest event, Emitter<GraduationListState> emit) async {
     if (state.hasReachedMax) return;
 
     int page = (state.graduations.length / state.size).round();
-    PageableInput pageable = PageableInput(size: state.size, page: page, sortFields: [
+    // PageableInput pageable = PageableInput(size: state.size, page: page, sortFields: [
+    PageableInput pageable = PageableInput(size: 2, page: page, sortFields: [
       const SortField(
         property: 'date',
         direction: EnumSort.desc,
       )
     ]);
+    GraduationListInput input = GraduationListInput(pageable: pageable, athletesCode: [event.athleteCode]);
 
     try {
       if (state.status == EnumGraduationListStatus.initial || state.status == EnumGraduationListStatus.error) {
         emit(state.copyWith(status: EnumGraduationListStatus.loading));
-        final posts = await repository.list(pageableInput: pageable);
+        final posts = await repository.list(pageableInput: input);
         return emit(state.copyWith(
           status: EnumGraduationListStatus.success,
           graduations: posts.records,
@@ -48,7 +51,7 @@ class GraduationListBloc extends Bloc<GraduationListEvent, GraduationListState> 
         ));
       }
 
-      final posts = await repository.list(pageableInput: pageable);
+      final posts = await repository.list(pageableInput: input);
       emit(posts.records.isEmpty
           ? state.copyWith(hasReachedMax: true)
           : state.copyWith(

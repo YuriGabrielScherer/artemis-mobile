@@ -1,9 +1,12 @@
-import 'package:artemis_mobile/core/getit.dart';
+import 'package:artemis_mobile/screens/graduation/list/detail/graduation_detail.dart';
+
+import '../../../core/auth/bloc/auth_bloc.dart';
+import '../../../core/getit.dart';
+import '../../../models/person/person.dart';
 
 import '../../../core/enums/enum_sort.dart';
 import '../../../models/graduation/graduation.dart';
 import '../../../providers/repositories/impl/graduation_repository_impl.dart';
-import '../detail/graduation_detail.dart';
 import 'bloc/graduation_list_bloc.dart';
 import '../../../widgets/graduation_situation_badge.dart';
 import '../../../widgets/list_header.dart';
@@ -26,36 +29,42 @@ class GraduationListPage extends StatelessWidget {
           )
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.only(top: 8, left: 12, right: 12),
-        child: BlocProvider<GraduationListBloc>(
-          create: (context) => GraduationListBloc(getIt.get<GraduationRepository>())..add(GraduationListRequest()),
-          child: BlocBuilder<GraduationListBloc, GraduationListState>(
-            builder: (context, state) {
-              if (state.status == EnumGraduationListStatus.success) {
-                if (state.graduations.isEmpty) {
-                  return const Text('Nenhuma graduação encontrada');
-                }
+      body: BlocBuilder<AuthBloc, AuthState>(
+        builder: (context, state) {
+          Person person = state.person!;
+          return Padding(
+            padding: const EdgeInsets.only(top: 8, left: 12, right: 12),
+            child: BlocProvider<GraduationListBloc>(
+              create: (context) => GraduationListBloc(getIt.get<GraduationRepository>())..add(GraduationListRequest(athleteCode: person.code)),
+              child: BlocBuilder<GraduationListBloc, GraduationListState>(
+                builder: (context, state) {
+                  if (state.status == EnumGraduationListStatus.success) {
+                    if (state.graduations.isEmpty) {
+                      return const Text('Nenhuma graduação encontrada');
+                    }
 
-                return _GraduationListView(
-                  graduations: state.graduations,
-                  totalRecords: state.totalRecords,
-                );
-              }
+                    return _GraduationListView(
+                      graduations: state.graduations,
+                      totalRecords: state.totalRecords,
+                      person: person,
+                    );
+                  }
 
-              if (state.status == EnumGraduationListStatus.error) {
-                return TextButton(
-                  child: const Text('Erro!'),
-                  onPressed: () {
-                    context.read<GraduationListBloc>().add(GraduationListRequest());
-                  },
-                );
-              }
+                  if (state.status == EnumGraduationListStatus.error) {
+                    return TextButton(
+                      child: const Text('Erro!'),
+                      onPressed: () {
+                        context.read<GraduationListBloc>().add(GraduationListRequest(athleteCode: person.code));
+                      },
+                    );
+                  }
 
-              return const Center(child: CircularProgressIndicator());
-            },
-          ),
-        ),
+                  return const Center(child: CircularProgressIndicator());
+                },
+              ),
+            ),
+          );
+        },
       ),
     );
   }
@@ -65,11 +74,13 @@ class _GraduationListView extends StatelessWidget {
   const _GraduationListView({
     required this.graduations,
     required this.totalRecords,
+    required this.person,
     Key? key,
   }) : super(key: key);
 
   final List<Graduation> graduations;
   final int totalRecords;
+  final Person person;
 
   @override
   Widget build(BuildContext context) {
@@ -88,6 +99,7 @@ class _GraduationListView extends StatelessWidget {
             child: _ListDataWidget(
               graduations: graduations,
               hasReachedMax: graduations.length == totalRecords,
+              person: person,
             ),
           ),
         ),
@@ -100,11 +112,13 @@ class _ListDataWidget extends StatefulWidget {
   const _ListDataWidget({
     required this.graduations,
     required this.hasReachedMax,
+    required this.person,
     Key? key,
   }) : super(key: key);
 
   final List<Graduation> graduations;
   final bool hasReachedMax;
+  final Person person;
 
   @override
   State<_ListDataWidget> createState() => _ListDataWidgetState();
@@ -128,7 +142,7 @@ class _ListDataWidgetState extends State<_ListDataWidget> {
   }
 
   void _onScroll() {
-    if (_isBottom) context.read<GraduationListBloc>().add(GraduationListRequest());
+    if (_isBottom) context.read<GraduationListBloc>().add(GraduationListRequest(athleteCode: widget.person.code));
   }
 
   bool get _isBottom {

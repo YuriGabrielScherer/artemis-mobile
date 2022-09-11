@@ -1,5 +1,6 @@
-import '../../../core/enums/enum_graduation_situation.dart';
 import 'package:equatable/equatable.dart';
+
+import '../../../core/enums/enum_graduation_situation.dart';
 
 class GraduationHistory extends Equatable {
   final EnumGraduationSituation situation;
@@ -13,7 +14,7 @@ class GraduationHistory extends Equatable {
   factory GraduationHistory.fromMap(Map<String, dynamic> value) {
     return GraduationHistory(
       situation: EnumGraduationSituationExtension.fromName(value['situation']),
-      date: DateTime.tryParse(value['date']) ?? DateTime.now(),
+      date: DateTime.parse(value['date']),
     );
   }
 }

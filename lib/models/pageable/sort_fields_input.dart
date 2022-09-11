@@ -1,4 +1,4 @@
-import 'package:artemis_mobile/core/enums/enum_sort.dart';
+import '../../core/enums/enum_sort.dart';
 
 class SortField {
   const SortField({

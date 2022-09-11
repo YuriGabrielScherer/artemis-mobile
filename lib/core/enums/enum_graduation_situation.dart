@@ -48,8 +48,8 @@ extension EnumGraduationSituationExtension on EnumGraduationSituation {
       case EnumGraduationSituation.closeSubscription:
         return Colors.grey.shade600;
       // return Colors.green.shade300;
-      // return Colors.yellow.shade400;
       case EnumGraduationSituation.openSubscription:
+        return Colors.yellowAccent;
       case EnumGraduationSituation.finished:
         return Colors.green;
       case EnumGraduationSituation.canceled:
@@ -61,8 +61,8 @@ extension EnumGraduationSituationExtension on EnumGraduationSituation {
 
   Color get textColor {
     switch (this) {
-      // return Colors.black;
       case EnumGraduationSituation.openSubscription:
+        return Colors.black;
       case EnumGraduationSituation.closeSubscription:
       case EnumGraduationSituation.created:
       case EnumGraduationSituation.canceled:

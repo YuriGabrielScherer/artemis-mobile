@@ -1,7 +1,8 @@
-import '../../core/auth/bloc/auth_bloc.dart';
-import 'widgets/graduation_card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../core/auth/bloc/auth_bloc.dart';
+import 'widgets/graduation_card_widget.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);

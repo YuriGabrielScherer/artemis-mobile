@@ -31,4 +31,31 @@ class DioClient {
       rethrow;
     }
   }
+
+  Future<Response> post(
+    String url, {
+    dynamic data,
+  }) async {
+    try {
+      final Response response = await _dio.post(url, data: data);
+      return response;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<void> downloadFile(
+    String url,
+    String path, {
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    await _dio.download(
+      url,
+      (Headers header) {
+        final fileName = header.value('content-disposition')?.split('=').last.replaceAll('"', '');
+        return '$path/${fileName ?? 'download.pdf'}';
+      },
+      onReceiveProgress: onReceiveProgress,
+    );
+  }
 }

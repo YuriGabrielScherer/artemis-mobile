@@ -1,8 +1,8 @@
-import 'package:artemis_mobile/providers/dio_client.dart';
-import 'package:artemis_mobile/providers/repositories/impl/athlete_repository_impl.dart';
-import 'package:artemis_mobile/providers/repositories/impl/auth_repository_impl.dart';
-import 'package:artemis_mobile/providers/repositories/impl/graduation_repository_impl.dart';
-import 'package:artemis_mobile/providers/repositories/impl/person_repository_impl.dart';
+import '../providers/dio_client.dart';
+import '../providers/repositories/impl/athlete_repository_impl.dart';
+import '../providers/repositories/impl/auth_repository_impl.dart';
+import '../providers/repositories/impl/graduation_repository_impl.dart';
+import '../providers/repositories/impl/person_repository_impl.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 

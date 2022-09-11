@@ -1,11 +1,12 @@
-import 'package:artemis_mobile/core/getit.dart';
-import 'package:artemis_mobile/providers/repositories/impl/athlete_repository_impl.dart';
-import 'package:artemis_mobile/screens/home/widgets/bloc/graduation_card_bloc.dart';
+import 'package:artemis_mobile/screens/graduation/list/detail/graduation_detail.dart';
+
+import '../../../core/getit.dart';
+import '../../../providers/repositories/impl/athlete_repository_impl.dart';
+import 'bloc/graduation_card_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../models/graduation/graduation.dart';
 import '../../../models/person/person.dart';
-import '../../graduation/detail/graduation_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -85,9 +86,7 @@ class _CardBody extends StatelessWidget {
         onTap: () {
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (ctx) => GraduationDetailPage(
-                graduation: graduation,
-              ),
+              builder: (ctx) => GraduationDetailPage(graduation: graduation),
             ),
           );
         },

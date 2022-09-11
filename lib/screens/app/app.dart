@@ -1,10 +1,11 @@
-import 'package:artemis_mobile/core/enums/enum_auth_status.dart';
-import 'package:artemis_mobile/core/getit.dart';
+import 'package:artemis_mobile/screens/graduation/athlete/athlete_graduation_list.dart';
+
+import '../../core/enums/enum_auth_status.dart';
+import '../../core/getit.dart';
 import '../../core/auth/bloc/auth_bloc.dart';
 import '../../core/theme_provider.dart';
 import '../../providers/repositories/impl/auth_repository_impl.dart';
 import '../../providers/repositories/impl/person_repository_impl.dart';
-import '../graduation/list/graduation_list.dart';
 import '../home/home_page.dart';
 import '../login/login_page.dart';
 import '../profile/profile_page.dart';
@@ -91,7 +92,7 @@ class BasePage extends StatefulWidget {
 class BasePageState extends State<BasePage> {
   final screens = const [
     HomePage(),
-    GraduationListPage(),
+    AthleteGraduationListPage(),
     ProfilePage(),
   ];
 

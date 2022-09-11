@@ -1,4 +1,4 @@
-import 'package:artemis_mobile/providers/dio_client.dart';
+import '../../dio_client.dart';
 import 'package:dio/dio.dart';
 
 import '../../../models/person/person.dart';

@@ -1,4 +1,4 @@
-import 'package:artemis_mobile/core/getit.dart';
+import '../../core/getit.dart';
 
 import '../../providers/repositories/impl/auth_repository_impl.dart';
 import 'bloc/login_bloc.dart';

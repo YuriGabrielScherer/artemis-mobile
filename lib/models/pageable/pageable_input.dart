@@ -1,4 +1,4 @@
-import 'package:artemis_mobile/models/pageable/sort_fields_input.dart';
+import 'sort_fields_input.dart';
 
 class PageableInput {
   const PageableInput({

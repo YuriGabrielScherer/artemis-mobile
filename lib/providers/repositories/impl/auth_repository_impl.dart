@@ -1,9 +1,9 @@
 import 'dart:async';
 
-import 'package:artemis_mobile/core/enums/enum_auth_status.dart';
-import 'package:artemis_mobile/models/authentication/authentication.dart';
-import 'package:artemis_mobile/providers/dio_client.dart';
-import 'package:artemis_mobile/providers/repositories/auth_repository.dart';
+import '../../../core/enums/enum_auth_status.dart';
+import '../../../models/authentication/authentication.dart';
+import '../../dio_client.dart';
+import '../auth_repository.dart';
 import 'package:dio/dio.dart';
 
 class AuthRepository implements IAuthRepository {
